@@ -1,5 +1,7 @@
 ## Aplicativo Android - Banco
 
+[Video do aplicativo.](https://drive.google.com/file/d/1o7o-mxL_64tCoN-cbeirSU6s-DXe6AKM/view?usp=sharing)
+
 1. Na classe ContasActivity foi implementado a exibição da lista com todos os objetos do tipo Conta que estão armazenados no banco de dados.
 
 2. Na classe ContaViewHolder foi implementado a exibição de uma imagem identificando que a conta possui saldo negativo; a passagem do número da conta que se deseja editar por intent para a classe EditarContaActivity ao apertar no ícone de edição; a exclusão da conta ao apertar no ícone de exclusão.
