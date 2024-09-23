@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="7dp">
+
+    <EditText
+        android:id="@+id/pesquisa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="Digite algum termo para pesquisar" />
+
+    <RadioGroup
+        android:id="@+id/tipoTransacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/peloTipoCredito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:text="Crédito" />
+
+        <RadioButton
+            android:id="@+id/peloTipoDebito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:text="Débito" />
+
+        <RadioButton
+            android:id="@+id/peloTipoTodos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:checked="true"
+            android:text="Todas" />
+    </RadioGroup>
+    <RadioGroup
+        android:id="@+id/tipoPesquisa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/pelaData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:text="Data" />
+
+        <RadioButton
+            android:id="@+id/peloNumeroConta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:text="Número da Conta" />
+    </RadioGroup>
+
+
+    <Button
+        android:id="@+id/btn_Pesquisar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Pesquisar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvResultado"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="3dp" />
+
+</LinearLayout>
