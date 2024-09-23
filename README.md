@@ -1,6 +1,6 @@
 ## Aplicativo Android - Banco
 
-[Video do aplicativo.](https://drive.google.com/file/d/1o7o-mxL_64tCoN-cbeirSU6s-DXe6AKM/view?usp=sharing)
+[Vídeo do aplicativo.](https://drive.google.com/file/d/1o7o-mxL_64tCoN-cbeirSU6s-DXe6AKM/view?usp=sharing)
 
 1. Na classe ContasActivity foi implementado a exibição da lista com todos os objetos do tipo Conta que estão armazenados no banco de dados.
 
