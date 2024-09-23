@@ -1,53 +1,49 @@
-# Projeto Android
+## Aplicativo Android - Banco
 
-## Banco
+1. Na classe ContasActivity foi implementado a exibição da lista com todos os objetos do tipo Conta que estão armazenados no banco de dados.
 
-A aplicação Banco está parcialmente implementada no momento. Existem vários métodos e trechos de códigos com anotações lembrando que faltam implementar alguns detalhes da aplicação.
+2. Na classe ContaViewHolder foi implementado a exibição de uma imagem identificando que a conta possui saldo negativo; a passagem do número da conta que se deseja editar por intent para a classe EditarContaActivity ao apertar no ícone de edição; a exclusão da conta ao apertar no ícone de exclusão.
 
-1. Na classe `ContasActivity`, já há um `RecyclerView` que usa um `Adapter` para mostrar uma lista de contas, mas os dados ainda não estão sendo recuperados do banco de dados. Dica: use o atributo `contas` (com tipo `LiveData<List<Conta>>`) de `ContaViewModel` para fazer isto;
+3. Na classe AdicionarContaActivity, foi implementado todas as validações antes da criação de um objeto Conta. As validações usadas foram:
+    - Nenhum campo pode ser vazio (todos são obrigatórios);
+    - O campo nome precisa ter ao menos 5 caracteres;
+    - O CPF deve conter necessariamente 11 caracteres, sem traços ou números.
+    - O campo número e saldo aceitam apenas números. O regex foi utilizado para garantir que os campos de número da conta e saldo contenham apenas números inteiros e decimais.
 
-2. Na classe `ContaViewHolder`, a imagem que é mostrada na lista de contas não é alterada caso o saldo esteja negativo. Inclua o código correspondente na função `bindTo`. 
+4. Na classe ContaDAO foram implementados os métodos para atualizar e remover contas; os métodos para buscar pelo número da conta, pelo nome do cliente, pelo
+cpf do cliente; o método para buscar o saldo total do banco somente das contas que possuem saldo positivo.
 
-3. Na classe `ContaViewHolder`, ajuste o código do listener dos botões de editar conta e remover conta para que a funcionalidade seja implementada;
+5. Na classe ContaRepository foi implementado o corpo dos métodos para atualizar e remover contas, buscar pelo número da conta, pelo nome do cliente e pelo cpf do cliente, usando os métodos da classe ContaDAO.
 
-4. Na classe `ContaViewHolder`, o `Intent` criado para enviar o usuário para a tela `EditarContaActivity`, não inclui o número da conta, informação essencial para recuperar os dados da conta na tela a ser aberta;
+6. Na classe ContaViewModel foram implementados os métodos para atualizar e remover contas, buscar pelo número da conta, pelo nome do cliente e pelo cpf do
+cliente, usando os métodos da classe ContaRepository.
 
-5. Na classe `AdicionarContaActivity`, inclua a funcionalidade de validar as informações digitadas (ex.: nenhum campo em branco, saldo é um número) antes de criar um objeto `Conta` no banco de dados. Implemente também o código que usa `ContaViewModel` para armazenar o objeto no banco de dados;
+7. Na classe EditarContaActivity, o intent enviado por ContaViewHolder é recebido e mostrado no campo de número da conta ao clicar no ícone de editar; o nome, cpf e saldo da conta escolhida para edição são exibidos nos campos do formulário ao clicar no ícone de editar; a validação dos campos antes da edição de um objeto Conta são as mesmas da classe AdicionarContaAcvitity; o método para excluir uma conta foi implementado.
 
-6. Na classe `ContaDAO`, inclua métodos para atualizar e remover contas no banco de dados, além de três métodos para buscar (1) pelo número da conta, (2) pelo nome do cliente e (3) pelo CPF do cliente;
+8. Na classe BancoViewModel foram implementados os métodos para buscar pelo número da conta, pelo nome do cliente e pelo cpf do cliente, além de pegar o saldo total do banco, usando os métodos da classe ContaRepository. Na classe BancoViewModel também foram implementados os métodos para buscar transações de crédito por data, transações de crédito por número da conta, transações de débito por data, transações de débito por número da conta, todas as transações por data e todas as transações por número da conta usando os métodos da classe TransacaoRepository.
 
-7. Na classe `ContaRepository`, implemente o corpo dos métodos para atualizar e remover contas no banco de dados, além dos métodos para buscar pelo número da conta, pelo nome do cliente e pelo CPF do cliente. Estes métodos devem usar os métodos criados na classe `ContaDAO` no passo anterior;
+9. Nas classes DebitarActivity, CreditarAcvitivy e TransferirAcvitity, a data e hora do sistema foram salvos e configurados no formato "dd-MM-yyyy HH:mm:ss" antes de salvar os objetos Transacao no banco de dados. Além disso, foram implementados as seguintes validações antes de concluir uma transação:
+    - Nenhum campo pode ser vazio;
+    - O campo número da conta aceita apenas números;
+    - O valor da transação não pode ser negativo. 
 
-8. Na classe `ContaViewModel`, inclua métodos para atualizar e remover contas no banco de dados, além de um método para buscar pelo número da conta. Estes métodos devem usar os métodos criados na classe `ContaRepository` no passo anterior;
+10. Na classe PesquisarActivity foi implementada a validação que não permite que o campo de pesquisa seja vazio. Além disso, o RecyclerView foi atualizado de acordo com a busca escolhida (busca pelo nome, pelo cpf ou pelo número da conta).
 
-9. Na classe `EditarContaActivity`, inclua a funcionalidade de recuperar as informações da conta de acordo com o número passado pelo `Intent` recebido pela `Activity`. Atualize os campos do formulário de acordo;
+11. Na classe MainAcvivity é exibido o saldo total do banco (o banco permite contas com saldo negativo, porém nessa classe é exibido apenas o saldo total
+considerando as contas com saldo positivo).
 
-10. Na classe `EditarContaActivity`, inclua a funcionalidade de validar as informações digitadas (ex.: nenhum campo em branco, saldo é um número) antes de atualizar a Conta no banco de dados. Implemente também o código que usa `ContaViewModel` para armazenar o objeto atualizado no banco de dados;
+12. Na classe TransacaoViewHolder, a cor do texto é alterada para vermelho caso transações de débito sejam realizadas.
 
-11. Na classe `EditarContaActivity`, implemente o código que usa `ContaViewModel` para remover o objeto do banco de dados;
+13. Na classe TransacaoDAO foram implementados os métodos para buscar transações de crédito por data, transações de crédito por número da conta, transações de débito por data, transações de débito por número da conta, todas as transações por data e todas as transações por número da conta.
 
-12. Na classe `BancoViewModel`, inclua métodos para realizar as operações de transferir, creditar, e debitar, bem como métodos para buscar pelo número da conta, pelo nome do cliente e pelo CPF do cliente. Estes métodos devem usar os métodos de `ContaRepository` criados em passos anteriores;
+13. Na classe TransacaoRepository foi implementado o corpo dos métodos para buscar transações de crédito por data, transações de crédito por número da conta, transações de débito por data, transações de débito por número da conta, todas as transações por data e todas as transações por número da conta usando os métodos
+da classe TransacaoDAO.
 
-13. Nas classes `DebitarActivity`, `CreditarActivity`, e `TransferirActivity`, implementar validação dos números das contas e do valor da operação, antes de efetuar a operação correspondente à tela. Você é livre para usar outro widget se preferir, como `Spinner` ou `AutoCompleteTextView`, por exemplo;
+14. Na classe TransacaoViewModel, foi implementado o corpo dos métodos para buscar transações de crédito por data, transações de crédito por número da conta, transações de débito por data, transações de débito por número da conta, todas as transações por data e todas as transações por número da conta usando os métodos da classe TransacaoRepository.
 
-14. Na classe `PesquisarActivity`, implementar o código que faz busca no banco de dados de acordo com o tipo de busca escolhido pelo usuário (ver `RadioGroup` `tipoPesquisa`);
+15. Na classe TransacoesActivity foi implementada a validação que não permite que o campo de pesquisa seja vazio. Além disso, o RecyclerView foi atualizado de acordo com a busca escolhida (transações de crédito por data, transações de crédito por número da conta, transações de débito por data, transações de débito por número da conta, todas as transações por data e todas as transações por número da conta).
 
-15. Na classe `PesquisarActivity`, ao realizar uma busca, atualizar o `RecyclerView` com os resultados da busca na medida que encontrar algo;
-
-16. Na classe `MainActivity`, mostrar o valor total de dinheiro armazenado no banco na tela principal. Este valor deve ser a soma de todos os saldos das contas armazenadas no banco de dados. Atenção para a possibilidade das contas terem saldo negativo (ou não, dependendo de sua escolha).
-
-17. Na classe `TransacaoViewHolder`, o valor da transação está sempre sendo exibido em azul. Altere o código para que o valor da transação seja exibido em vermelho, no caso de transações de débito.
-
-18. Na classe `TransacaoDAO`, inclua métodos para buscar transações pelo (1) número da conta, (2) pela data, filtrando pelo tipo da transação (crédito, débito, ou todas);
-
-19. Na classe `TransacaoRepository`, implemente o corpo dos métodos para buscar transações pelo (1) número da conta, (2) pela data, filtrando pelo tipo da transação (crédito, débito, ou todas). Estes métodos devem usar os métodos criados na classe `TransacaoDAO` no passo anterior;
-
-20. Na classe `TransacaoViewModel`, inclua métodos para realizar as buscas, usando os métodos criados na classe `ContaRepository` no passo anterior;
-
-21. Na classe `TransacoesActivity`, implementar o código que faz busca no banco de dados de acordo com o tipo de busca escolhido pelo usuário (ver `RadioGroup` `tipoPesquisa`) e exibe (atualiza) a lista na tela. O `RecyclerView` deve mostrar todas as transações inicialmente;
-
-
-## Daqui em diante - Opcional
+## Melhorias futuras
 
 1. Incluir as telas para gerenciamento de Clientes e ajustar implementação do BD para refletir relacionamento em que toda `Conta` tem apenas um `Cliente` associado, mas um `Cliente` pode ter mais de uma `Conta` - neste caso, ao adicionar uma conta tem que verificar se o `Cliente` é válido (se é um `Cliente` já existente no banco);
 
@@ -55,12 +51,5 @@ A aplicação Banco está parcialmente implementada no momento. Existem vários 
 
 3. Fazer melhorias de UI na aplicação.
 
-
-## ATENÇÃO
-
-
-- Entregue o arquivo `.zip` com a pasta do projeto, após dar um "_Clean Project_" na IDE (para diminuir o tamanho);
-- Inclua comentários no código explicando o que faz cada método criado por você na implementação da aplicação;
-- Escreva também um arquivo `README.md` ou um Google Docs explicando a sua implementação, informando quais os passos que você completou (vide numeração acima para identificar);
-- Se não for implementar a parte Opcional 1, não vai precisar mexer em nada que tem no pacote `br.ufpe.cin.residencia.banco.cliente`;
-- Faça um vídeo da sua aplicação rodando, demonstrando o que você conseguiu implementar.
+<br>
+Projeto final da disciplina Orientação a Objetos com Java e Android da Pós-graduação Lato Sensu - Especialização em Residência em Software com Ênfase em Análise de Testes da Universidade Federal de Pernambuco.
